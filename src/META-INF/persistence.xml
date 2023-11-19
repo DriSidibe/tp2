@@ -7,6 +7,7 @@
     <class>tp2.modeles.Ue</class>
     <class>tp2.modeles.Helper</class>
     <class>tp2.modeles.Annee</class>
+    <class>tp2.modeles.Anneecourant</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tp2?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="drissa"/>

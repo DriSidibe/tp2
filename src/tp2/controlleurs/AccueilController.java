@@ -18,15 +18,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tp2.controlleurs.database.exceptions.NonexistentEntityException;
+import tp2.dao.AnneecourantDao;
 import tp2.dao.EnregistrerAnneeDao;
 import tp2.dao.EnregistrerAttributionDao;
 import tp2.dao.EnregistrerEnseignantDao;
@@ -69,6 +73,9 @@ public class AccueilController implements Initializable {
     EnregistrerAnneeDao enregistrerAnneeDao = new EnregistrerAnneeDao();
     ObservableList<Annee> anneeChbData = FXCollections.observableArrayList();
     Object currentController;
+    FXMLLoader currentLoader;
+    Annee newAnnee;
+    AnneecourantDao anneeCourantDao = new AnneecourantDao();
 
     /**
      * Initializes the controller class.
@@ -83,105 +90,163 @@ public class AccueilController implements Initializable {
             Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
         }
         annee_chb.setItems(anneeChbData);
-        try {
-            Annee a = enregistrerAnneeDao.getLastAnneesInDatabase();
-            if (a != null) {
-                annee_chb.setValue(a);
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
-        }
         currentButton = helper;
         clickedButtonName = "ue";
         ActionEvent event = null;
         try {
             show_new_scene("EnregistrementUE", event);
-            updateButtons(accuieil_ue);
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        updateButtons(accuieil_ue);
         annee_chb.getSelectionModel().selectedIndexProperty().addListener(
                     (ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
-                        Annee newAnnee = anneeChbData.get(new_val.intValue());
+                        newAnnee = anneeChbData.get(new_val.intValue());
                         if (currentController instanceof BilanController) {
-                            BilanController bilanController = new BilanController();
-                            bilanController.setAnnee(annee_chb.getValue());
                             try {
-                                bilanController.updateEnseignantChoiceBox();
+                                BilanController bilanController = currentLoader.getController();
+                                bilanController.setAnnee(newAnnee);
+                                try {
+                                    bilanController.updateTable();
+                                } catch (Exception ex) {
+                                    Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                             } catch (Exception ex) {
-                                Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
+                                  Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         }else if (currentController instanceof RepartitionDesHeuresController) {
-                            RepartitionDesHeuresController repartitionDesHeuresController = new RepartitionDesHeuresController();
-                            repartitionDesHeuresController.setAnnee(annee_chb.getValue());
-                        }else if (currentController instanceof EnregistrementEnseignantController) {
-                            EnregistrementEnseignantController enregistrementEnseignantController = new EnregistrementEnseignantController();
-                            enregistrementEnseignantController.setAnnee(annee_chb.getValue());
                             try {
-                                enregistrementEnseignantController.updateTable();
+                                RepartitionDesHeuresController repartitionDesHeuresController = currentLoader.getController();
+                                repartitionDesHeuresController.setAnnee(newAnnee);
+                                try {
+                                    repartitionDesHeuresController.updateTable();
+                                } catch (Exception ex) {
+                                    Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                             } catch (Exception ex) {
-                                Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
+                                  Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                        }else if (currentController instanceof EnregistrerUeDao) {
-                            EnregistrementUEController enregistrementUEController = new EnregistrementUEController();
-                            enregistrementUEController.setAnnee(annee_chb.getValue());
+                        }else if (currentController instanceof EnregistrementEnseignantController) {
                             try {
-                                enregistrementUEController.updateTable();
+                                EnregistrementEnseignantController enregistrementEnseignantController = currentLoader.getController();
+                                enregistrementEnseignantController.setAnnee(newAnnee);
+                                try {
+                                    enregistrementEnseignantController.updateTable();
+                                } catch (Exception ex) {
+                                    Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                             } catch (Exception ex) {
-                                Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
+                                  Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }else if (currentController instanceof EnregistrementUEController) {
+                            try {
+                                EnregistrementUEController enregistrementUEController = currentLoader.getController();
+                                enregistrementUEController.setAnnee(newAnnee);
+                                try {
+                                    enregistrementUEController.updateTable();
+                                } catch (Exception ex) {
+                                    Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            } catch (Exception ex) {
+                                  Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }else if (currentController instanceof BilanController) {
+                            try {
+                                BilanController bilanController = currentLoader.getController();
+                                bilanController.setAnnee(newAnnee);
+                                bilanController.updateTable();
+                            } catch (Exception ex) {
+                                  Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }else if (currentController instanceof InfoController) {
+                            try {
+                                InfoController infoController = currentLoader.getController();
+                                infoController.setAnnee(newAnnee);
+                            } catch (Exception ex) {
+                                  Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         }
                     });
+        try {
+            for (Annee annee : anneeChbData) {
+                if (annee.getLabel() == null ? anneeCourantDao.getLastAnneecourantsInDatabase().getIdAnnee().getLabel() == null : annee.getLabel().equals(anneeCourantDao.getLastAnneecourantsInDatabase().getIdAnnee().getLabel())) {
+                    annee_chb.setValue(annee);
+                    break;
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
 
     @FXML
     private void enregistrerUE(ActionEvent event) throws IOException {
-        if (!isMessageUpdate) {
-            message.setText("chargement...");
+        try {
+            if (!isMessageUpdate) {
+                message.setText("chargement...");
+            }
+            container.setCenter(message);
+            show_new_scene("EnregistrementUE", event);
+            lookForReclick(accuieil_ue, "ue");
+        } catch (Exception ex) {
+            Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        container.setCenter(message);
-        show_new_scene("EnregistrementUE", event);
-        lookForReclick(accuieil_ue, "ue");
     }
 
     @FXML
     private void enregistrerEnseignant(ActionEvent event) throws IOException {
-        if (!isMessageUpdate) {
-            message.setText("chargement...");
+        try {
+            if (!isMessageUpdate) {
+                message.setText("chargement...");
+            }
+            container.setCenter(message);
+            show_new_scene("EnregistrementEnseignant", event);
+            lookForReclick(accuieil_enseignant, "enseignant");
+        } catch (Exception ex) {
+            Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        container.setCenter(message);
-        show_new_scene("EnregistrementEnseignant", event);
-        lookForReclick(accuieil_enseignant, "enseignant");
     }
 
     @FXML
     private void attribuerHeures(ActionEvent event) throws IOException {
-        if (!isMessageUpdate) {
-            message.setText("chargement...");
+        try {
+            if (!isMessageUpdate) {
+                message.setText("chargement...");
+            }
+            container.setCenter(message);
+            show_new_scene("RepartitionDesHeures", event);
+            lookForReclick(accuieil_attribution, "attribution");
+        } catch (Exception ex) {
+            Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        container.setCenter(message);
-        show_new_scene("RepartitionDesHeures", event);
-        lookForReclick(accuieil_attribution, "attribution");
     }
     
     @FXML
     private void enregistrerAnnee(ActionEvent event) throws IOException {
-        if (!isMessageUpdate) {
-            message.setText("chargement...");
+        try {
+            if (!isMessageUpdate) {
+                message.setText("chargement...");
+            }
+            container.setCenter(message);
+            show_new_scene("Annee", event);
+            lookForReclick(accuieil_annee, "annee");
+        } catch (Exception ex) {
+            Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        container.setCenter(message);
-        show_new_scene("Annee", event);
-        lookForReclick(accuieil_annee, "annee");
     }
     
     @FXML
     private void bilan(ActionEvent event) throws IOException {
-        if (!isMessageUpdate) {
-            message.setText("chargement...");
+        try {
+            if (!isMessageUpdate) {
+                message.setText("chargement...");
+            }
+            container.setCenter(message);
+            show_new_scene("Bilan", event);
+            lookForReclick(accuieil_bilan, "bilan");
+        } catch (Exception ex) {
+            Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        container.setCenter(message);
-        show_new_scene("Bilan", event);
-        lookForReclick(accuieil_bilan, "bilan");
     }
     
     @FXML
@@ -201,7 +266,7 @@ public class AccueilController implements Initializable {
     }
     
     @FXML
-    private void apropos(ActionEvent event) throws IOException, NonexistentEntityException {
+    private void apropos(ActionEvent event) throws IOException, NonexistentEntityException, Exception {
         if (!isMessageUpdate) {
             message.setText("chargement...");
         }
@@ -210,30 +275,54 @@ public class AccueilController implements Initializable {
         lookForReclick(accuieil_propos, "propos");
     }
     
-    public void show_new_scene(String ressource, ActionEvent event) throws IOException{
+    @FXML
+    public void changerAnnee(ActionEvent event) throws IOException{
+        Parent root;
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("tp2/vues/ChangerAnneeCourrante.fxml"));
+        root = loader.load();
+        Stage stage = new Stage();
+        stage.setResizable(false);
+        stage.setScene(new Scene(root));
+        stage.setTitle("Changer annee courrante");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(
+            ((Node)event.getSource()).getScene().getWindow() );
+        stage.show();
+    }
+    
+    public void show_new_scene(String ressource, ActionEvent event) throws IOException, Exception{
         Parent root;
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("tp2/vues/"+ressource+".fxml"));
         root = loader.load();
         if ("Bilan".equals(ressource)) {
             BilanController bilanController = loader.getController();
-            bilanController.setAnnee(annee_chb.getValue());
+            bilanController.setAnnee(newAnnee);
             currentController = bilanController;
         }else if ("RepartitionDesHeures".equals(ressource)) {
             RepartitionDesHeuresController repartitionDesHeuresController = loader.getController();
-            repartitionDesHeuresController.setAnnee(annee_chb.getValue());
+            repartitionDesHeuresController.setAnnee(newAnnee);
             currentController = repartitionDesHeuresController;
         }else if ("EnregistrementEnseignant".equals(ressource)) {
             EnregistrementEnseignantController enregistrementEnseignantController = loader.getController();
-            enregistrementEnseignantController.setAnnee(annee_chb.getValue());
+            enregistrementEnseignantController.setAnnee(newAnnee);
             currentController = enregistrementEnseignantController;
         }else if ("EnregistrementUE".equals(ressource)) {
             EnregistrementUEController enregistrementUEController = loader.getController();
-            enregistrementUEController.setAnnee(annee_chb.getValue());
+            enregistrementUEController.setAnnee(newAnnee);
             currentController = enregistrementUEController;
         }else if ("Annee".equals(ressource)) {
             AnneeController anneeController = loader.getController();
             anneeController.setStage((Stage) annee_chb.getScene().getWindow());
+        }else if ("Bilan".equals(ressource)) {
+            BilanController bilanController = loader.getController();
+            bilanController.setAnnee(newAnnee);
+            currentController = bilanController;
+        }else if ("Info".equals(ressource)) {
+            InfoController infoController = loader.getController();
+            infoController.setAnnee(newAnnee);
+            currentController = infoController;
         }
+        currentLoader = loader;
         container.setCenter(root);
     }
     

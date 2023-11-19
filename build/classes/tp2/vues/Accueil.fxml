@@ -27,8 +27,9 @@
             <Label fx:id="message" text="BIENVENU" BorderPane.alignment="CENTER" />
          </center>
          <top>
-            <HBox alignment="CENTER_RIGHT">
+            <HBox alignment="CENTER_RIGHT" spacing="10.0">
                <children>
+                  <Button mnemonicParsing="false" onAction="#changerAnnee" text="changer l'annee courrante" />
                   <Button fx:id="helper" maxHeight="0.0" maxWidth="0.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" visible="false" BorderPane.alignment="CENTER_RIGHT" />
                   <ChoiceBox fx:id="annee_chb" prefWidth="150.0" />
                </children>

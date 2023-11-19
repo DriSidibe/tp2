@@ -7,6 +7,7 @@ package tp2.controlleurs;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -25,6 +26,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import tp2.dao.AnneecourantDao;
 import tp2.dao.EnregistrerAnneeDao;
 import tp2.dao.EnregistrerEnseignantDao;
 import tp2.helpers.dialogs;
@@ -54,6 +57,8 @@ public class EnregistrementEnseignantController implements Initializable {
     @FXML
     private Button enregistrer_enseignant_supprimer_btn;
     @FXML
+    private Button enregistrer_enseignant_vider_btn;
+    @FXML
     private Button annuler_mod;
     @FXML
     private Label enregistrerEnseignant_nbrEnseignant;
@@ -69,11 +74,10 @@ public class EnregistrementEnseignantController implements Initializable {
     private TableColumn<Enseignant, String> enregistrer_enseignant_table_email;
     @FXML
     private TableColumn<Enseignant, String> enregistrer_enseignant_table_grade;
-    @FXML
-    private Button enregistrer_enseignant_vider_btn;
     
     Annee annee;
     EnregistrerAnneeDao anregistrerAnneeDao = new EnregistrerAnneeDao();
+    AnneecourantDao anneecourantDao = new AnneecourantDao();
 
 
     EnregistrerEnseignantDao enregistrerEnseignantDao = new EnregistrerEnseignantDao();
@@ -200,10 +204,24 @@ public class EnregistrementEnseignantController implements Initializable {
     public void updateTable() throws Exception{
         enseignantTableData.clear();
         enseignantTableData.addAll(enregistrerEnseignantDao.getEnseignantsInDatabase(annee));
+        if(!Objects.equals(anneecourantDao.getLastAnneecourantsInDatabase().getIdAnnee().getLabel(), annee.getLabel())){
+            enregistrer_enseignant_enregistrer_btn.setDisable(true);
+            enregistrer_enseignant_modifier_btn.setDisable(true);
+            enregistrer_enseignant_supprimer_btn.setDisable(true);
+            enregistrer_enseignant_vider_btn.setDisable(true);
+        }else{
+            enregistrer_enseignant_enregistrer_btn.setDisable(false);
+            enregistrer_enseignant_modifier_btn.setDisable(false);
+            enregistrer_enseignant_supprimer_btn.setDisable(false);
+            enregistrer_enseignant_vider_btn.setDisable(false);
+        }
+        enseignantTotal = enseignantTableData.size();
+        update();
     }
     
-    public void setAnnee(Annee a){
+    public void setAnnee(Annee a) throws Exception{
         annee = a;
+        updateTable();
     }
     
     

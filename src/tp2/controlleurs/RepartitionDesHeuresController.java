@@ -29,6 +29,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import tp2.dao.AnneecourantDao;
 import tp2.dao.EnregistrerAnneeDao;
 import tp2.dao.EnregistrerAttributionDao;
 import tp2.dao.EnregistrerEnseignantDao;
@@ -66,7 +67,7 @@ public class RepartitionDesHeuresController implements Initializable {
     @FXML
     private Button repartition_supprimer_btn;
     @FXML
-    private Button repartition_vider_btn1;
+    private Button repartition_vider_btn;
     @FXML
     private Button annuler_mod;
     @FXML
@@ -112,6 +113,7 @@ public class RepartitionDesHeuresController implements Initializable {
     int attributionTotal = 0;
     Ue selectedUe_chb;
     Enseignant selectedEnseigant;
+    AnneecourantDao anneecourantDao = new AnneecourantDao();
   
     @FXML
     private void enregistrer() throws IOException, Exception {
@@ -483,8 +485,45 @@ public class RepartitionDesHeuresController implements Initializable {
         updateNombreUeAttribuer();
     }
     
-    public void setAnnee(Annee a){
+    public void updateTable() throws Exception{
+        attributionTableData.clear();
+        ueChbData.clear();
+        enseignantChbData.clear();
+        attributionTableData.setAll(enregistrerAttributionDao.getAttributionsInDatabase(annee));
+        ueChbData.addAll(enregistrerUeDao.getUesInDatabase(annee));
+        enseignantChbData.addAll(enregistrerEnseignantDao.getEnseignantsInDatabase(annee));
+        repartition_seance_cm.setText("");
+        repartition_seance_td.setText("");
+        repartition_seance_tp.setText("");
+        
+        repartition_info_dejaCM.setText("0");
+        repartition_info_dejaTD.setText("0");
+        repartition_info_dejaTP.setText("0");
+
+        repartition_info_restantCM.setText("0");
+        repartition_info_restantTD.setText("0");
+        repartition_info_restantTP.setText("0");
+            
+        repartition_groupe_CM.setText("0");
+        repartition_groupe_TD.setText("0");
+        repartition_groupe_TP.setText("0");
+        
+        if(!Objects.equals(anneecourantDao.getLastAnneecourantsInDatabase().getIdAnnee().getLabel(), annee.getLabel())){
+            repartition_enregistrer_btn.setDisable(true);
+            repartition_modifier_btn.setDisable(true);
+            repartition_supprimer_btn.setDisable(true);
+            repartition_vider_btn.setDisable(true);
+        }else{
+            repartition_enregistrer_btn.setDisable(false);
+            repartition_modifier_btn.setDisable(false);
+            repartition_supprimer_btn.setDisable(false);
+            repartition_vider_btn.setDisable(false);
+        }
+    }
+    
+    public void setAnnee(Annee a) throws Exception{
         annee = a;
+        updateTable();
     }
     
     /**
@@ -496,7 +535,7 @@ public class RepartitionDesHeuresController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             repartition_enregistrer_btn.setTooltip(new Tooltip("enregistrer un nouveau l'attribution"));
-            repartition_vider_btn1.setTooltip(new Tooltip("vider le table des attributions"));
+            repartition_vider_btn.setTooltip(new Tooltip("vider le table des attributions"));
             repartition_modifier_btn.setTooltip(new Tooltip("modifier la ligne du tableau selectionnée"));
             repartition_supprimer_btn.setTooltip(new Tooltip("supprimer la ligne du tableau sélectionnée"));
             
@@ -519,7 +558,9 @@ public class RepartitionDesHeuresController implements Initializable {
             repartition_enseignant_chb.setItems(enseignantChbData);
             repartition_ue_chb.getSelectionModel().selectedIndexProperty().addListener(
                     (ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
-                        selectedUe_chb = ueChbData.get(new_val.intValue());
+                        if (ueChbData.size() != 0) {;
+                            selectedUe_chb = ueChbData.get(new_val.intValue());
+                        }
                 try {
                     updateInfo();
                 } catch (Exception ex) {
@@ -528,7 +569,9 @@ public class RepartitionDesHeuresController implements Initializable {
                     });
             repartition_enseignant_chb.getSelectionModel().selectedIndexProperty().addListener(
                     (ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
-                        selectedEnseigant = enseignantChbData.get(new_val.intValue());
+                        if (enseignantChbData.size() != 0) {;
+                            selectedEnseigant = enseignantChbData.get(new_val.intValue());
+                        }
                 try {
                     updateInfoUeAttribuer();
                 } catch (Exception ex) {

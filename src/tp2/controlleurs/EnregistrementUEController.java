@@ -7,6 +7,7 @@ package tp2.controlleurs;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -24,6 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import tp2.dao.AnneecourantDao;
 import tp2.dao.EnregistrerAnneeDao;
 import tp2.dao.EnregistrerUeDao;
 import tp2.helpers.dialogs;
@@ -87,6 +89,7 @@ public class EnregistrementUEController implements Initializable {
     int ueTotal = 0;
     Annee annee;
     EnregistrerAnneeDao anregistrerAnneeDao = new EnregistrerAnneeDao();
+    AnneecourantDao anneecourantDao = new AnneecourantDao();
     
     @FXML
     private void enregistrer() throws IOException, Exception {
@@ -201,9 +204,22 @@ public class EnregistrementUEController implements Initializable {
     public void updateTable() throws Exception{
         ueTableData.clear();
         ueTableData.addAll(enregistrerUeDao.getUesInDatabase(annee));
+        if(!Objects.equals(anneecourantDao.getLastAnneecourantsInDatabase().getIdAnnee().getLabel(), annee.getLabel())){
+            enregistrerUE_enregistrer_btn.setDisable(true);
+            enregistrerUE_modifier_btn.setDisable(true);
+            enregistrerUE_supprimer_btn.setDisable(true);
+            enregistrerUE_vider_btn.setDisable(true);
+        }else{
+            enregistrerUE_enregistrer_btn.setDisable(false);
+            enregistrerUE_modifier_btn.setDisable(false);
+            enregistrerUE_supprimer_btn.setDisable(false);
+            enregistrerUE_vider_btn.setDisable(false);
+        }
+        ueTotal = ueTableData.size();
+        update();
     }
     
-    public void setAnnee(Annee a){
+    public void setAnnee(Annee a) throws Exception{
         annee = a;
     }
     
@@ -241,6 +257,11 @@ public class EnregistrementUEController implements Initializable {
         enregistrerUE_UE_table.setItems(ueTableData);
         ueTotal = ueTableData.size();
         update();
+        try {
+            updateTable();
+        } catch (Exception ex) {
+            Logger.getLogger(EnregistrementUEController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

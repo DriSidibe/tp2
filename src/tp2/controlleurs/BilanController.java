@@ -109,8 +109,10 @@ public class BilanController implements Initializable {
         enseignantChbData.addAll(enregistrerEnseignantDao.getEnseignantsInDatabase(annee));
     }
     
-    public void setAnnee(Annee a){
+    public void setAnnee(Annee a) throws Exception{
         annee = a;
+        updateEnseignantChoiceBox();
+        updateTable();
     }
 
     /**
