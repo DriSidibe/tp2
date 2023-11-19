@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="1000.0" minHeight="-Infinity" minWidth="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp2.controlleurs.EnregistrementEnseignantController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <children>
+            <VBox alignment="TOP_CENTER" maxWidth="400.0" minWidth="400.0" prefHeight="200.0" prefWidth="400.0" spacing="20.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" minHeight="100.0" prefHeight="100.0" prefWidth="300.0" style="-fx-underline: true; -fx-font-weight: bold; -fx-wrap-text: true; -fx-alignment: center;" text="Enrégistrement enseignant">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </Label>
+                  <VBox spacing="20.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Nom" />
+                                    <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="enregistrer_enseignant_nom" minWidth="-Infinity" prefWidth="150.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Prenom" />
+                                    <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="enregistrer_enseignant_prenom" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Téléphone" />
+                                    <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="enregistrer_enseignant_telephone" minWidth="150.0" prefWidth="150.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="210.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Email" />
+                                    <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="enregistrer_enseignant_email" minWidth="150.0" prefWidth="150.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="310.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Grade" />
+                                    <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <ChoiceBox fx:id="enregistrer_enseignant_grade" prefWidth="150.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="480.0" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                           <children>
+                              <Button fx:id="enregistrer_enseignant_enregistrer_btn" layoutX="216.0" layoutY="29.0" mnemonicParsing="false" onAction="#enregistrer" text="Enregistrer" />
+                              <Button fx:id="enregistrer_enseignant_modifier_btn" layoutX="253.0" layoutY="29.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
+                              <Button fx:id="enregistrer_enseignant_supprimer_btn" layoutX="291.0" layoutY="29.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+                              <Button fx:id="annuler_mod" layoutX="212.0" layoutY="10.0" mnemonicParsing="false" onAction="#annuler_modification" style="-fx-background-color: red; -fx-text-fill: white;" text="Annuler" visible="false" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </VBox>
+               </children>
+            </VBox>
+            <Separator orientation="VERTICAL" prefHeight="200.0">
+               <padding>
+                  <Insets bottom="20.0" top="20.0" />
+               </padding>
+            </Separator>
+            <VBox layoutX="10.0" layoutY="10.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox>
+                     <children>
+                        <Label text="Nombre Total d'enseignant : " />
+                        <Label fx:id="enregistrerEnseignant_nbrEnseignant" layoutX="10.0" layoutY="10.0" text="0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </HBox>
+                  <VBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <TableView fx:id="enregistrer_enseignant_table" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                           <columns>
+                              <TableColumn fx:id="enregistrer_enseignant_table_nom" prefWidth="75.0" text="Nom" />
+                              <TableColumn fx:id="enregistrer_enseignant_table_prenom" prefWidth="75.0" text="Prenom" />
+                              <TableColumn fx:id="enregistrer_enseignant_table_telephone" prefWidth="75.0" text="Téléphone" />
+                              <TableColumn fx:id="enregistrer_enseignant_table_email" prefWidth="75.0" text="Email" />
+                              <TableColumn fx:id="enregistrer_enseignant_table_grade" prefWidth="75.0" text="Grade" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+                  <Button fx:id="enregistrer_enseignant_vider_btn" mnemonicParsing="false" onAction="#vider" text="Vider">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

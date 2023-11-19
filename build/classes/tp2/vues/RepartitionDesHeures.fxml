@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="1000.0" minHeight="400.0" minWidth="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp2.controlleurs.RepartitionDesHeuresController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <children>
+            <VBox alignment="TOP_CENTER" maxWidth="400.0" minWidth="400.0" prefWidth="400.0">
+               <children>
+                  <Label style="-fx-underline: true; -fx-font-weight: bold;" text="Répartition des heures">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <VBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="UE" />
+                                    <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <ChoiceBox fx:id="repartition_ue_chb" prefWidth="150.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Enseignant" />
+                                    <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <ChoiceBox fx:id="repartition_enseignant_chb" prefWidth="150.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_RIGHT" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Circle fx:id="repartition_deja_attribuer_circle" fill="WHITE" radius="6.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: white;" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Nombre d' ue déja attribué :" />
+                              <Text fx:id="repartition_ueAttribuer" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="322.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Séances" />
+                                    <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="CM" />
+                                          <TextField fx:id="repartition_seance_cm" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="TD" />
+                                          <TextField fx:id="repartition_seance_td" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" layoutX="110.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="TP" />
+                                          <TextField fx:id="repartition_seance_tp" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="480.0" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                           <children>
+                              <Button fx:id="repartition_enregistrer_btn" layoutX="216.0" layoutY="29.0" mnemonicParsing="false" onAction="#enregistrer" text="Enrégistrer" />
+                              <Button fx:id="repartition_modifier_btn" layoutX="253.0" layoutY="29.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
+                              <Button fx:id="repartition_supprimer_btn" layoutX="291.0" layoutY="29.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+                              <Button fx:id="annuler_mod" layoutX="212.0" layoutY="29.0" mnemonicParsing="false" onAction="#annuler_modification" style="-fx-background-color: red; -fx-text-fill: white;" text="Annuler" visible="false" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </VBox>
+               </children>
+            </VBox>
+            <Separator orientation="VERTICAL" style="-fx-background-color: #cccccc;">
+               <padding>
+                  <Insets bottom="20.0" top="20.0" />
+               </padding>
+            </Separator>
+            <VBox layoutX="10.0" layoutY="10.0" spacing="20.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox spacing="10.0">
+                     <children>
+                        <VBox alignment="CENTER" style="-fx-background-color: #cccccc;">
+                           <children>
+                              <VBox>
+                                 <children>
+                                    <VBox alignment="CENTER" style="-fx-background-color: #cccccc;">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-underline: true;" text="INFOS">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                          <HBox alignment="CENTER">
+                                             <children>
+                                                <VBox alignment="CENTER" prefHeight="200.0" spacing="20.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-underline: true;" text="Nbr d'heures déja attribué" />
+                                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER_RIGHT">
+                                                               <children>
+                                                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="CM : " />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_RIGHT">
+                                                               <children>
+                                                                  <Text fx:id="repartition_info_dejaCM" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" layoutX="10.0" layoutY="80.0" prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER_RIGHT">
+                                                               <children>
+                                                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="TD : " />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_RIGHT">
+                                                               <children>
+                                                                  <Text fx:id="repartition_info_dejaTD" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" layoutX="10.0" layoutY="140.0" prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER_RIGHT">
+                                                               <children>
+                                                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="TP : " />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_RIGHT">
+                                                               <children>
+                                                                  <Text fx:id="repartition_info_dejaTP" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                                <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                                <VBox alignment="CENTER" prefHeight="200.0" spacing="20.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-underline: true;" text="Nbr d'heures restant à attribué" />
+                                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER_RIGHT">
+                                                               <children>
+                                                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="CM : " />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_RIGHT">
+                                                               <children>
+                                                                  <Text fx:id="repartition_info_restantCM" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" layoutX="10.0" layoutY="80.0" prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER_RIGHT">
+                                                               <children>
+                                                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="TD : " />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_RIGHT">
+                                                               <children>
+                                                                  <Text fx:id="repartition_info_restantTD" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" layoutX="10.0" layoutY="140.0" prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER_RIGHT">
+                                                               <children>
+                                                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="TP : " />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_RIGHT">
+                                                               <children>
+                                                                  <Text fx:id="repartition_info_restantTP" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                                <Separator layoutX="208.0" layoutY="10.0" orientation="VERTICAL" prefHeight="200.0" />
+                                                <VBox alignment="CENTER" prefHeight="200.0" spacing="20.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-underline: true;" text="Nbr de groupes" />
+                                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER_RIGHT">
+                                                               <children>
+                                                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="CM : " />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_RIGHT">
+                                                               <children>
+                                                                  <Text fx:id="repartition_groupe_CM" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" layoutX="10.0" layoutY="80.0" prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER_RIGHT">
+                                                               <children>
+                                                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="TD : " />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_RIGHT">
+                                                               <children>
+                                                                  <Text fx:id="repartition_groupe_TD" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" layoutX="10.0" layoutY="140.0" prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER_RIGHT">
+                                                               <children>
+                                                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="TP : " />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_RIGHT">
+                                                               <children>
+                                                                  <Text fx:id="repartition_groupe_TP" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <TableView fx:id="repartition_table" VBox.vgrow="ALWAYS">
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                     <columns>
+                        <TableColumn fx:id="repartition_table_nom" prefWidth="75.0" text="Nom &amp; Prénoms" />
+                        <TableColumn fx:id="repartition_table_CM" prefWidth="75.0" text="CM" />
+                        <TableColumn fx:id="repartition_table_TD" prefWidth="75.0" text="TD" />
+                        <TableColumn fx:id="repartition_table_TP" prefWidth="75.0" text="TP" />
+                     </columns>
+                  </TableView>
+                  <Button fx:id="repartition_vider_btn1" mnemonicParsing="false" onAction="#vider" text="Vider" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

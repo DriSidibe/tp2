@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="695.0" minHeight="-Infinity" minWidth="600.0" prefHeight="398.0" prefWidth="663.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp2.controlleurs.AnneeController">
+   <children>
+      <TextField fx:id="annee" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+      <HBox alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#enregistrer" text="Enregistrer" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
