@@ -150,14 +150,6 @@ public class AccueilController implements Initializable {
                             } catch (Exception ex) {
                                   Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                        }else if (currentController instanceof BilanController) {
-                            try {
-                                BilanController bilanController = currentLoader.getController();
-                                bilanController.setAnnee(newAnnee);
-                                bilanController.updateTable();
-                            } catch (Exception ex) {
-                                  Logger.getLogger(AccueilController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
                         }else if (currentController instanceof InfoController) {
                             try {
                                 InfoController infoController = currentLoader.getController();
@@ -294,33 +286,38 @@ public class AccueilController implements Initializable {
         Parent root;
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("tp2/vues/"+ressource+".fxml"));
         root = loader.load();
-        if ("Bilan".equals(ressource)) {
-            BilanController bilanController = loader.getController();
-            bilanController.setAnnee(newAnnee);
-            currentController = bilanController;
-        }else if ("RepartitionDesHeures".equals(ressource)) {
-            RepartitionDesHeuresController repartitionDesHeuresController = loader.getController();
-            repartitionDesHeuresController.setAnnee(newAnnee);
-            currentController = repartitionDesHeuresController;
-        }else if ("EnregistrementEnseignant".equals(ressource)) {
-            EnregistrementEnseignantController enregistrementEnseignantController = loader.getController();
-            enregistrementEnseignantController.setAnnee(newAnnee);
-            currentController = enregistrementEnseignantController;
-        }else if ("EnregistrementUE".equals(ressource)) {
-            EnregistrementUEController enregistrementUEController = loader.getController();
-            enregistrementUEController.setAnnee(newAnnee);
-            currentController = enregistrementUEController;
-        }else if ("Annee".equals(ressource)) {
-            AnneeController anneeController = loader.getController();
-            anneeController.setStage((Stage) annee_chb.getScene().getWindow());
-        }else if ("Bilan".equals(ressource)) {
-            BilanController bilanController = loader.getController();
-            bilanController.setAnnee(newAnnee);
-            currentController = bilanController;
-        }else if ("Info".equals(ressource)) {
-            InfoController infoController = loader.getController();
-            infoController.setAnnee(newAnnee);
-            currentController = infoController;
+        if (null != ressource) switch (ressource) {
+            case "Bilan":
+                BilanController bilanController = loader.getController();
+                bilanController.setAnnee(newAnnee);
+                currentController = bilanController;
+                break;
+            case "RepartitionDesHeures":
+                RepartitionDesHeuresController repartitionDesHeuresController = loader.getController();
+                repartitionDesHeuresController.setAnnee(newAnnee);
+                currentController = repartitionDesHeuresController;
+                break;
+            case "EnregistrementEnseignant":
+                EnregistrementEnseignantController enregistrementEnseignantController = loader.getController();
+                enregistrementEnseignantController.setAnnee(newAnnee);
+                currentController = enregistrementEnseignantController;
+                break;
+            case "EnregistrementUE":
+                EnregistrementUEController enregistrementUEController = loader.getController();
+                enregistrementUEController.setAnnee(newAnnee);
+                currentController = enregistrementUEController;
+                break;
+            case "Annee":
+                AnneeController anneeController = loader.getController();
+                anneeController.setStage((Stage) annee_chb.getScene().getWindow());
+                break;
+            case "Info":
+                InfoController infoController = loader.getController();
+                infoController.setAnnee(newAnnee);
+                currentController = infoController;
+                break;
+            default:
+                break;
         }
         currentLoader = loader;
         container.setCenter(root);

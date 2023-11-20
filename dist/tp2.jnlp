@@ -8,7 +8,6 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="lib\tp2Preloader.jar" size="3003" download="progress" />
     <jar href="lib\jakarta.persistence-2.2.3.jar" size="173811" download="eager" />
     <jar href="lib\mysql-connector-j-8.0.31.jar" size="2515519" download="eager" />
     <jar href="lib\org.eclipse.persistence.antlr-2.7.10.jar" size="147580" download="eager" />
@@ -17,8 +16,8 @@
     <jar href="lib\org.eclipse.persistence.jpa-2.7.10.jar" size="1413599" download="eager" />
     <jar href="lib\org.eclipse.persistence.jpa.jpql-2.7.10.jar" size="1333327" download="eager" />
     <jar href="lib\org.eclipse.persistence.moxy-2.7.10.jar" size="621251" download="eager" />
-    <jar href="tp2.jar" size="119759" download="eager" />
+    <jar href="tp2.jar" size="119641" download="eager" />
   </resources>
-  <jfx:javafx-desc  width="800" height="600" main-class="tp2.Tp2"  name="tp2"  preloader-class="tp2preloader.Tp2Preloader"/>
+  <jfx:javafx-desc  width="800" height="600" main-class="tp2.Tp2"  name="tp2" />
   <update check="always"/>
 </jnlp>

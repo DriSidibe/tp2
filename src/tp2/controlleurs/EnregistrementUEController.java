@@ -112,7 +112,7 @@ public class EnregistrementUEController implements Initializable {
                 enregistrerUE_UE_table.setItems(ueTableData);
                 enregistrerUE_UE_table.refresh();
                 annuler_mod.setVisible(false);
-                Alert info_box = dialogs.information("information", "Modification", "Person modified with success!");
+                Alert info_box = dialogs.information("information", "Modification", "Ue modifié avec succes!");
                 info_box.showAndWait();
             }else{
                 for (Ue ue : ueTableData) {
@@ -123,7 +123,7 @@ public class EnregistrementUEController implements Initializable {
                 Ue newUe = new Ue(enregistrerUE_libelleUE.getText(), Integer.valueOf(enregistrerUE_nbrHeureCM.getText()), Integer.valueOf(enregistrerUE_nbrHeureTD.getText()), Integer.valueOf(enregistrerUE_nbrHeureTP.getText()),Integer.valueOf(enregistrerUE_nbrHeureCM.getText()), Integer.valueOf(enregistrerUE_nbrHeureTD.getText()), Integer.valueOf(enregistrerUE_nbrHeureTP.getText()), Integer.valueOf(enregistrerUE_nbrgroupeCM.getText()), Integer.valueOf(enregistrerUE_nbrgroupeTD.getText()), Integer.valueOf(enregistrerUE_nbrgroupeTP.getText()), annee);
                 enregistrerUeDao.createUeInDatabase(newUe);
                 ueTableData.add(newUe);
-                Alert info_box = dialogs.information("information", "Registration", "Person save with success!");
+                Alert info_box = dialogs.information("information", "Enregistrement", "Ue enrégistrer avec succes!");
                 info_box.showAndWait();
             }
             reinitialize_all_fields();
@@ -164,7 +164,7 @@ public class EnregistrementUEController implements Initializable {
     private void supprimer() throws Exception{
         Ue selectedUe = enregistrerUE_UE_table.getSelectionModel().getSelectedItem();
         if (selectedUe != null && !isInModification) {
-            Alert confirm_box = dialogs.confirmation("confirmation", "Registration", "Etes vous sure de vouloir supprimer "+selectedUe.toString());
+            Alert confirm_box = dialogs.confirmation("confirmation", "Suppression", "Etes vous sure de vouloir supprimer "+selectedUe.toString());
             Optional<ButtonType> result = confirm_box.showAndWait();
             if (result.get() == ButtonType.OK){
                 ueTableData.remove(selectedUe);
@@ -174,7 +174,7 @@ public class EnregistrementUEController implements Initializable {
                 update();
             }
         }else{
-            Alert war_box = dialogs.warning("warninig", "Avertissement", "vous etes en mode modification");
+            Alert war_box = dialogs.warning("Avertissement", "Avertissement", "vous etes en mode modification");
             war_box.showAndWait();
         }
     }
@@ -221,6 +221,10 @@ public class EnregistrementUEController implements Initializable {
     
     public void setAnnee(Annee a) throws Exception{
         annee = a;
+        try {
+            updateTable();
+        } catch (Exception e) {
+        }
     }
     
     /**

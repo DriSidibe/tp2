@@ -120,7 +120,7 @@ public class RepartitionDesHeuresController implements Initializable {
         boolean canUpdate = false;
         int id = 0;
         if (!isInModification && selectedUe_chb != null && !"".equals(repartition_seance_cm.getText()) && !"".equals(repartition_seance_td.getText()) && !"".equals(repartition_seance_tp.getText()) && (selectedUe_chb.getNombreHeureRestCm() < Integer.valueOf(repartition_seance_cm.getText()) || selectedUe_chb.getNombreHeureRestTd() < Integer.valueOf(repartition_seance_td.getText()) || selectedUe_chb.getNombreHeureRestTp() < Integer.valueOf(repartition_seance_tp.getText()))) {
-            Alert error_box = dialogs.error("Error", "Atteinte de quota", "Un des quota de l'ue est atteint.");
+            Alert error_box = dialogs.error("Erreur", "Atteinte de quota", "Un des quota de l'ue est atteint.");
             error_box.showAndWait();
         }else{
             if (!"".equals(repartition_seance_cm.getText()) && !"".equals(repartition_seance_td.getText()) && !"".equals(repartition_seance_tp.getText()) && selectedEnseigant != null && selectedUe_chb != null) {
@@ -158,7 +158,7 @@ public class RepartitionDesHeuresController implements Initializable {
                                     selectedEnseigant.setQuotaCmAttribuer(selectedEnseigant.getQuotaCmAttribuer()+attribution.getQuotaCm());
                                     selectedEnseigant.setQuotaTdAttribuer(selectedEnseigant.getQuotaTdAttribuer()+attribution.getQuotaTd());
                                     selectedEnseigant.setQuotaTpAttribuer(selectedEnseigant.getQuotaTpAttribuer()+attribution.getQuotaTp());
-                                    Alert error_box = dialogs.error("Error", "Atteinte de quota", "Le total des heures attribuer depasse le quota prevu pour l'enseignant");
+                                    Alert error_box = dialogs.error("Erreur", "Atteinte de quota", "Le total des heures attribuer depasse le quota prevu pour l'enseignant");
                                     error_box.showAndWait();
                                     break;
                                             
@@ -176,7 +176,7 @@ public class RepartitionDesHeuresController implements Initializable {
                                 selectedUe_chb.setNombreHeureRestCm(selectedUe_chb.getNombreHeureRestCm()-attributionInModification.getQuotaCm());
                                 selectedUe_chb.setNombreHeureRestTd(selectedUe_chb.getNombreHeureRestTd()-attributionInModification.getQuotaTd());
                                 selectedUe_chb.setNombreHeureRestTp(selectedUe_chb.getNombreHeureRestTp()-attributionInModification.getQuotaTp());
-                                Alert error_box = dialogs.error("Error", "Atteinte de quota", "Un des quota de l'ue est atteint.");
+                                Alert error_box = dialogs.error("Erreur", "Atteinte de quota", "Un des quota de l'ue est atteint.");
                                 error_box.showAndWait();
                             }
                             break;
@@ -187,20 +187,51 @@ public class RepartitionDesHeuresController implements Initializable {
                         repartition_table.setItems(attributionTableData);
                         repartition_table.refresh();
                         annuler_mod.setVisible(false);
-                        Alert info_box = dialogs.information("information", "Modification", "Person modified with success!");
+                        Alert info_box = dialogs.information("information", "Modification", "Modification effectuée avec succes!");
                         info_box.showAndWait();
                         repartition_enseignant_chb.setDisable(false);
                         repartition_ue_chb.setDisable(false);
                     }
                 }else{
-                    int ancienQuota = 0;
-                    int totalQuotaRenseigner;
-                    switch (selectedEnseigant.getGrade()) {
-                        case "MC":
-                        case "PT":
+                    boolean isOkForRegistretion = true;
+                    for (Attribution a : enregistrerAttributionDao.getAttributionsInDatabase(annee)) {
+                        if (Objects.equals(a.getIdUe().getId(), selectedUe_chb.getId()) && Objects.equals(a.getIdEnseignant().getId(), selectedEnseigant.getId())) {
+                            Alert error_box = dialogs.error("Erreur", "Ue deja attribue", "Cette ue a deja ete attribué a ce enseignant.");
+                            error_box.showAndWait();
+                            isOkForRegistretion = false;
+                            break;
+                        }
+                    }
+                    if (isOkForRegistretion) {
+                        int ancienQuota = 0;
+                        int totalQuotaRenseigner;
+                        switch (selectedEnseigant.getGrade()) {
+                            case "MC":
+                            case "PT":
+                                {
+                                    ancienQuota = (int) (selectedEnseigant.getQuotaCmAttribuer() + selectedEnseigant.getQuotaTdAttribuer()/1.6 + (selectedEnseigant.getQuotaTpAttribuer()/1.5)/1.6);
+                                    totalQuotaRenseigner = (int) (Integer.parseInt(repartition_seance_cm.getText()) + Integer.parseInt(repartition_seance_td.getText())/1.6 + (Integer.parseInt(repartition_seance_tp.getText())/1.5)/1.6);
+                                    if (totalQuotaRenseigner + ancienQuota <= selectedEnseigant.getQuotaRestant()) {
+                                        for (Attribution attribution : attributionTableData) {
+                                            if (id < attribution.getId()) {
+                                                id = attribution.getId();
+                                            }
+                                        }
+                                        Attribution newAttribution = new Attribution(selectedEnseigant.getNom()+" "+selectedEnseigant.getPrenom(), Integer.valueOf(repartition_seance_cm.getText()), Integer.valueOf(repartition_seance_td.getText()), Integer.valueOf(repartition_seance_tp.getText()), 0, 0, 0, annee, selectedEnseigant, selectedUe_chb);
+                                        enregistrerAttributionDao.createAttributionInDatabase(newAttribution);
+                                        attributionTableData.add(newAttribution);
+                                        Alert info_box = dialogs.information("information", "Enregistrement", "Attribution effectuée avec succes!");
+                                        info_box.showAndWait();
+                                        canUpdate = true;
+                                    }else{
+                                        Alert error_box = dialogs.error("Error", "Atteinte de quota", "Le total des heures attribuer depasse le quota prevu pour l'enseignant");
+                                        error_box.showAndWait();
+                                    }       break;
+                                }
+                            case "MA":
                             {
-                                ancienQuota = (int) (selectedEnseigant.getQuotaCmAttribuer() + selectedEnseigant.getQuotaTdAttribuer()/1.6 + (selectedEnseigant.getQuotaTpAttribuer()/1.5)/1.6);
-                                totalQuotaRenseigner = (int) (Integer.parseInt(repartition_seance_cm.getText()) + Integer.parseInt(repartition_seance_td.getText())/1.6 + (Integer.parseInt(repartition_seance_tp.getText())/1.5)/1.6);
+                                ancienQuota = (int) (selectedEnseigant.getQuotaTdAttribuer() + (selectedEnseigant.getQuotaTpAttribuer()/1.5)/1.6);
+                                totalQuotaRenseigner = (int) (Integer.parseInt(repartition_seance_td.getText()) + Integer.parseInt(repartition_seance_tp.getText())/1.5);
                                 if (totalQuotaRenseigner + ancienQuota <= selectedEnseigant.getQuotaRestant()) {
                                     for (Attribution attribution : attributionTableData) {
                                         if (id < attribution.getId()) {
@@ -210,63 +241,43 @@ public class RepartitionDesHeuresController implements Initializable {
                                     Attribution newAttribution = new Attribution(selectedEnseigant.getNom()+" "+selectedEnseigant.getPrenom(), Integer.valueOf(repartition_seance_cm.getText()), Integer.valueOf(repartition_seance_td.getText()), Integer.valueOf(repartition_seance_tp.getText()), 0, 0, 0, annee, selectedEnseigant, selectedUe_chb);
                                     enregistrerAttributionDao.createAttributionInDatabase(newAttribution);
                                     attributionTableData.add(newAttribution);
-                                    Alert info_box = dialogs.information("information", "Registration", "Person save with success!");
+                                    Alert info_box = dialogs.information("information", "Enregistrement", "Person save with success!");
                                     info_box.showAndWait();
                                     canUpdate = true;
                                 }else{
                                     Alert error_box = dialogs.error("Error", "Atteinte de quota", "Le total des heures attribuer depasse le quota prevu pour l'enseignant");
-                                    error_box.showAndWait();
+                                error_box.showAndWait();
                                 }       break;
                             }
-                        case "MA":
-                        {
-                            ancienQuota = (int) (selectedEnseigant.getQuotaTdAttribuer() + (selectedEnseigant.getQuotaTpAttribuer()/1.5)/1.6);
-                            totalQuotaRenseigner = (int) (Integer.parseInt(repartition_seance_td.getText()) + Integer.parseInt(repartition_seance_tp.getText())/1.5);
-                            if (totalQuotaRenseigner + ancienQuota <= selectedEnseigant.getQuotaRestant()) {
-                                for (Attribution attribution : attributionTableData) {
-                                    if (id < attribution.getId()) {
-                                        id = attribution.getId();
+                            case "AS":
+                            {
+                                ancienQuota = (int) (selectedEnseigant.getQuotaTdAttribuer() + selectedEnseigant.getQuotaTpAttribuer()*1.5);
+                                totalQuotaRenseigner = (int) (Integer.parseInt(repartition_seance_td.getText()) + Integer.parseInt(repartition_seance_tp.getText())*1.5);
+                                if (totalQuotaRenseigner + ancienQuota <= selectedEnseigant.getQuotaRestant()) {
+                                    for (Attribution attribution : attributionTableData) {
+                                        if (id < attribution.getId()) {
+                                            id = attribution.getId();
+                                        }
                                     }
-                                }
-                                Attribution newAttribution = new Attribution(selectedEnseigant.getNom()+" "+selectedEnseigant.getPrenom(), Integer.valueOf(repartition_seance_cm.getText()), Integer.valueOf(repartition_seance_td.getText()), Integer.valueOf(repartition_seance_tp.getText()), 0, 0, 0, annee, selectedEnseigant, selectedUe_chb);
-                                enregistrerAttributionDao.createAttributionInDatabase(newAttribution);
-                                attributionTableData.add(newAttribution);
-                                Alert info_box = dialogs.information("information", "Registration", "Person save with success!");
-                                info_box.showAndWait();
-                                canUpdate = true;
-                            }else{
-                                Alert error_box = dialogs.error("Error", "Atteinte de quota", "Le total des heures attribuer depasse le quota prevu pour l'enseignant");
-                            error_box.showAndWait();
+                                    Attribution newAttribution = new Attribution(selectedEnseigant.getNom()+" "+selectedEnseigant.getPrenom(), Integer.valueOf(repartition_seance_cm.getText()), Integer.valueOf(repartition_seance_td.getText()), Integer.valueOf(repartition_seance_tp.getText()), 0, 0, 0, annee, selectedEnseigant, selectedUe_chb);
+                                    enregistrerAttributionDao.createAttributionInDatabase(newAttribution);
+                                    attributionTableData.add(newAttribution);
+                                    Alert info_box = dialogs.information("information", "Enregistrement", "Person save with success!");
+                                    info_box.showAndWait();
+                                    canUpdate = true;
+                                }else{
+                                    Alert error_box = dialogs.error("Erreur", "Atteinte de quota", "Le total des heures attribuer depasse le quota prevu pour l'enseignant");
+                                error_box.showAndWait();
                             }       break;
-                        }
-                        case "AS":
-                        {
-                            ancienQuota = (int) (selectedEnseigant.getQuotaTdAttribuer() + selectedEnseigant.getQuotaTpAttribuer()*1.5);
-                            totalQuotaRenseigner = (int) (Integer.parseInt(repartition_seance_td.getText()) + Integer.parseInt(repartition_seance_tp.getText())*1.5);
-                            if (totalQuotaRenseigner + ancienQuota <= selectedEnseigant.getQuotaRestant()) {
-                                for (Attribution attribution : attributionTableData) {
-                                    if (id < attribution.getId()) {
-                                        id = attribution.getId();
-                                    }
                                 }
-                                Attribution newAttribution = new Attribution(selectedEnseigant.getNom()+" "+selectedEnseigant.getPrenom(), Integer.valueOf(repartition_seance_cm.getText()), Integer.valueOf(repartition_seance_td.getText()), Integer.valueOf(repartition_seance_tp.getText()), 0, 0, 0, annee, selectedEnseigant, selectedUe_chb);
-                                enregistrerAttributionDao.createAttributionInDatabase(newAttribution);
-                                attributionTableData.add(newAttribution);
-                                Alert info_box = dialogs.information("information", "Registration", "Person save with success!");
-                                info_box.showAndWait();
-                                canUpdate = true;
-                            }else{
-                                Alert error_box = dialogs.error("Error", "Atteinte de quota", "Le total des heures attribuer depasse le quota prevu pour l'enseignant");
-                            error_box.showAndWait();
-                        }       break;
-                            }
+                        }
                     }
                 }
                 if (canUpdate) {
                     megaUpdate();
                 }
             }else{
-                Alert error_box = dialogs.error("Error", "Champs vide", "Tous les champs pouvant etre renseignés doivent l'etre");
+                Alert error_box = dialogs.error("Erreur", "Champs vide", "Tous les champs pouvant etre renseignés doivent l'etre");
                 error_box.showAndWait();
             }
         }
@@ -309,7 +320,7 @@ public class RepartitionDesHeuresController implements Initializable {
     private void supprimer() throws Exception{
         Attribution selectedAttribution = repartition_table.getSelectionModel().getSelectedItem();
         if (selectedAttribution != null && !isInModification) {
-            Alert confirm_box = dialogs.confirmation("confirmation", "Registration", "Etes vous sure de vouloir supprimer cet attribution?");
+            Alert confirm_box = dialogs.confirmation("confirmation", "Enregistrement", "Etes vous sure de vouloir supprimer cet attribution?");
             Optional<ButtonType> result = confirm_box.showAndWait();
             if (result.get() == ButtonType.OK){
                 Attribution att = enregistrerAttributionDao.getAttributionInDatabase(selectedAttribution);
@@ -343,14 +354,14 @@ public class RepartitionDesHeuresController implements Initializable {
             }
             updateNombreUeAttribuer();
         }else{
-            Alert war_box = dialogs.warning("warninig", "Avertissement", "vous etes en mode modification");
+            Alert war_box = dialogs.warning("Avertissement", "Avertissement", "vous etes en mode modification");
             war_box.showAndWait();
         }
     }
     
     @FXML
     private void vider() throws Exception{
-        Alert confirm_box = dialogs.confirmation("confirmation", "Registration", "Etes vous sure de vouloir vider le tableau ?");
+        Alert confirm_box = dialogs.confirmation("confirmation", "Vidage", "Etes vous sure de vouloir vider le tableau ?");
         Optional<ButtonType> result = confirm_box.showAndWait();
         if (result.get() == ButtonType.OK){
             enregistrerAttributionDao.destroyAttributionsInDatabase(annee);
@@ -558,7 +569,7 @@ public class RepartitionDesHeuresController implements Initializable {
             repartition_enseignant_chb.setItems(enseignantChbData);
             repartition_ue_chb.getSelectionModel().selectedIndexProperty().addListener(
                     (ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
-                        if (ueChbData.size() != 0) {;
+                        if (!ueChbData.isEmpty()) {;
                             selectedUe_chb = ueChbData.get(new_val.intValue());
                         }
                 try {
@@ -569,7 +580,7 @@ public class RepartitionDesHeuresController implements Initializable {
                     });
             repartition_enseignant_chb.getSelectionModel().selectedIndexProperty().addListener(
                     (ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
-                        if (enseignantChbData.size() != 0) {;
+                        if (!enseignantChbData.isEmpty()) {;
                             selectedEnseigant = enseignantChbData.get(new_val.intValue());
                         }
                 try {

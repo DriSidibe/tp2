@@ -23,4 +23,46 @@ public class BilanTableModel {
         this.tp = tp;
         this.annee = annee;
     }
+
+    public Annee getAnnee() {
+        return annee;
+    }
+
+    public int getTd() {
+        return td;
+    }
+
+    public int getCm() {
+        return cm;
+    }
+
+    public int getTp() {
+        return tp;
+    }
+
+    public String getUe() {
+        return ue;
+    }
+
+    public void setCm(int cm) {
+        this.cm = cm;
+    }
+
+    public void setTd(int td) {
+        this.td = td;
+    }
+
+    public void setAnnee(Annee annee) {
+        this.annee = annee;
+    }
+
+    public void setTp(int tp) {
+        this.tp = tp;
+    }
+
+    public void setUe(String ue) {
+        this.ue = ue;
+    }
+    
+    
 }

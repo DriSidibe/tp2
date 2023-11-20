@@ -26,7 +26,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import tp2.dao.AnneecourantDao;
 import tp2.dao.EnregistrerAnneeDao;
 import tp2.dao.EnregistrerEnseignantDao;
@@ -106,7 +105,7 @@ public class EnregistrementEnseignantController implements Initializable {
                 enregistrer_enseignant_table.setItems(enseignantTableData);
                 enregistrer_enseignant_table.refresh();
                 annuler_mod.setVisible(false);
-                Alert info_box = dialogs.information("information", "Modification", "Person modified with success!");
+                Alert info_box = dialogs.information("information", "Modification", "Enseignant enrégistrer avec succes!");
                 info_box.showAndWait();
             }else{
                 int quota = 0;
@@ -131,7 +130,7 @@ public class EnregistrementEnseignantController implements Initializable {
                 Enseignant newenseignant = new Enseignant(enregistrer_enseignant_nom.getText(), enregistrer_enseignant_prenom.getText(), enregistrer_enseignant_telephone.getText(), enregistrer_enseignant_email.getText(), grade, quota, 0, 0, 0, 0, 0, 0, annee);
                 enregistrerEnseignantDao.createEnseignantInDatabase(newenseignant);
                 enseignantTableData.add(newenseignant);
-                Alert info_box = dialogs.information("information", "Registration", "Person save with success!");
+                Alert info_box = dialogs.information("information", "Enregistrement", "Enseignant enrégistrer avec succes!");
                 info_box.showAndWait();
             }
             reinitialize_all_fields();
@@ -166,7 +165,7 @@ public class EnregistrementEnseignantController implements Initializable {
     private void supprimer() throws Exception{
         Enseignant selectedEnseignant = enregistrer_enseignant_table.getSelectionModel().getSelectedItem();
         if (selectedEnseignant != null && !isInModification) {
-            Alert confirm_box = dialogs.confirmation("confirmation", "Registration", "Etes vous sure de vouloir supprimer "+selectedEnseignant.toString());
+            Alert confirm_box = dialogs.confirmation("confirmation", "Suppression", "Etes vous sure de vouloir supprimer "+selectedEnseignant.toString());
             Optional<ButtonType> result = confirm_box.showAndWait();
             if (result.get() == ButtonType.OK){
                 enseignantTableData.remove(selectedEnseignant);
@@ -176,7 +175,7 @@ public class EnregistrementEnseignantController implements Initializable {
                 update();
             }
         }else{
-            Alert war_box = dialogs.warning("warninig", "Avertissement", "vous etes en mode modification");
+            Alert war_box = dialogs.warning("Avertissement", "Avertissement", "vous etes en mode modification");
             war_box.showAndWait();
         }
     }

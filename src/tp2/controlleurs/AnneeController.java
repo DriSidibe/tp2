@@ -38,7 +38,7 @@ public class AnneeController {
         if (annee.getText() != "") {
             Annee a = new Annee(annee.getText());
             enregistrerAnneeDao.createAnneeInDatabase(a);
-            Alert info_box = dialogs.information("information", "Registration", "Annee enregistrer avec success\nL'applicationn va redemarer pour a prise en compte!");
+            Alert info_box = dialogs.information("information", "Enrégistrement", "Annee enregistrer avec success\nL'applicationn va redemarer pour a prise en compte!");
             info_box.showAndWait();
             
             annee.setText("");
@@ -49,7 +49,7 @@ public class AnneeController {
             stage.setScene(new Scene(root));
             stage.show();
         }else{
-            Alert error_box = dialogs.error("Error", "Annee vide", "Veuillez renseigner une annee universitaire svp.");
+            Alert error_box = dialogs.error("Erreur", "Annee vide", "Veuillez renseigner une annee universitaire svp.");
             error_box.showAndWait();
         }
     }

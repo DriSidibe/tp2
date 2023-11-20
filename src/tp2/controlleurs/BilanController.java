@@ -140,6 +140,7 @@ public class BilanController implements Initializable {
             bilan_enseignat_chb.getSelectionModel().selectedIndexProperty().addListener(
                     (ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
                 try {
+                    bilanTableModelTableData.clear();
                     selectedEnseigant = enseignantChbData.get(new_val.intValue());
                     updateTotalHeureFields();
                     updateTable();
