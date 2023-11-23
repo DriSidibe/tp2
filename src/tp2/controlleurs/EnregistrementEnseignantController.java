@@ -241,6 +241,7 @@ public class EnregistrementEnseignantController implements Initializable {
         enregistrer_enseignant_table_telephone.setCellValueFactory(new PropertyValueFactory<>("tel"));
         enregistrer_enseignant_table_email.setCellValueFactory(new PropertyValueFactory<>("email"));
         enregistrer_enseignant_table_grade.setCellValueFactory(new PropertyValueFactory<>("grade"));
+        //enregistrer_enseignant_table_nombreHeure.setCellValueFactory(new PropertyValueFactory<>("grade"));
         
         try {
             annee = anregistrerAnneeDao.getLastAnneesInDatabase();

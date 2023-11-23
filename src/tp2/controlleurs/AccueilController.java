@@ -254,6 +254,16 @@ public class AccueilController implements Initializable {
             enregistrerAttributionDao.empty();
             enregistrerEnseignantDao.empty();
             enregistrerUeDao.empty();
+            Alert info_box = dialogs.information("information", "Enrégistrement", "L'application a ete reinitialiser avec succes\nL'applicationn va redemarer pour a prise en compte!");
+            info_box.showAndWait();
+            
+            Stage stage = (Stage) accuieil_annee.getScene().getWindow();
+            Parent root;
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("tp2/vues/Accueil.fxml"));
+            root = loader.load();
+            stage.close();
+            stage.setScene(new Scene(root));
+            stage.show();
         }
     }
     

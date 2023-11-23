@@ -31,7 +31,10 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Heures total attribué" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Heures total attribué">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Text>
                               <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                                  <children>
                                     <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
@@ -43,19 +46,28 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Heure CM" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Heure CM">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></Text>
                                     <TextField fx:id="bilan_heureCM" editable="false" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Heure TD" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Heure TD">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></Text>
                                     <TextField fx:id="bilan_heureTD" editable="false" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" layoutX="110.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Heure TP" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Heure TP">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></Text>
                                     <TextField fx:id="bilan_heureTP" editable="false" />
                                  </children>
                               </VBox>
@@ -65,8 +77,14 @@
                   </HBox>
                   <HBox alignment="CENTER">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Heures total éffectuées : " />
-                        <Text fx:id="Bilan_total_effectuer" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="0" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Heures total éffectuées : ">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
+                        <Text fx:id="Bilan_total_effectuer" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
                      </children>
                   </HBox>
                   <TableView fx:id="bilan_table" maxHeight="500.0" minHeight="300.0" prefHeight="500.0" VBox.vgrow="ALWAYS">

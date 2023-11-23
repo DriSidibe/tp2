@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -13,23 +14,50 @@
          <bottom>
             <HBox alignment="CENTER" prefHeight="25.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="accuieil_ue" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="170.0" minWidth="170.0" mnemonicParsing="false" onAction="#enregistrerUE" prefWidth="170.0" style="-fx-background-color: white;" text="Enregistrer ue" HBox.hgrow="ALWAYS" />
-                  <Button fx:id="accuieil_enseignant" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="170.0" minWidth="170.0" mnemonicParsing="false" onAction="#enregistrerEnseignant" prefWidth="170.0" style="-fx-background-color: white;" text="Eregistrer enseignant" HBox.hgrow="ALWAYS" />
-                  <Button fx:id="accuieil_attribution" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="170.0" minWidth="170.0" mnemonicParsing="false" onAction="#attribuerHeures" prefWidth="170.0" style="-fx-background-color: white;" text="Attribuer des heures" HBox.hgrow="ALWAYS" />
-                  <Button fx:id="accuieil_bilan" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="170.0" minWidth="170.0" mnemonicParsing="false" onAction="#bilan" prefWidth="170.0" style="-fx-background-color: white;" text="Bilan" HBox.hgrow="ALWAYS" />
-                  <Button fx:id="accuieil_annee" alignment="CENTER" layoutX="520.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="170.0" minWidth="170.0" mnemonicParsing="false" onAction="#enregistrerAnnee" prefWidth="170.0" style="-fx-background-color: white;" text="Enregistrer annee" />
-                  <Button fx:id="accuieil_reinitialiser" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="170.0" minWidth="170.0" mnemonicParsing="false" onAction="#reinitialiser" prefWidth="170.0" style="-fx-background-color: white;" text="Reinitialiser l'application" HBox.hgrow="ALWAYS" />
-                  <Button fx:id="accuieil_propos" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="170.0" minWidth="170.0" mnemonicParsing="false" onAction="#apropos" prefWidth="170.0" style="-fx-background-color: white;" text="A propos" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="accuieil_ue" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="170.0" minWidth="170.0" mnemonicParsing="false" onAction="#enregistrerUE" prefWidth="170.0" style="-fx-background-color: white;" text="Enregistrer ue" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Button fx:id="accuieil_enseignant" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="170.0" minWidth="170.0" mnemonicParsing="false" onAction="#enregistrerEnseignant" prefWidth="170.0" style="-fx-background-color: white;" text="Eregistrer enseignant" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Button fx:id="accuieil_attribution" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="170.0" minWidth="170.0" mnemonicParsing="false" onAction="#attribuerHeures" prefWidth="170.0" style="-fx-background-color: white;" text="Attribuer des heures" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="13.0" />
+                     </font></Button>
+                  <Button fx:id="accuieil_bilan" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="170.0" minWidth="170.0" mnemonicParsing="false" onAction="#bilan" prefWidth="170.0" style="-fx-background-color: white;" text="Bilan" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Button fx:id="accuieil_annee" alignment="CENTER" layoutX="520.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="170.0" minWidth="170.0" mnemonicParsing="false" onAction="#enregistrerAnnee" prefWidth="170.0" style="-fx-background-color: white;" text="Enregistrer annee">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Button fx:id="accuieil_reinitialiser" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="170.0" minWidth="170.0" mnemonicParsing="false" onAction="#reinitialiser" prefWidth="170.0" style="-fx-background-color: white;" text="Reinitialiser l'application" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Button fx:id="accuieil_propos" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="170.0" minWidth="170.0" mnemonicParsing="false" onAction="#apropos" prefWidth="170.0" style="-fx-background-color: white;" text="A propos" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
                </children>
             </HBox>
          </bottom>
          <center>
-            <Label fx:id="message" text="BIENVENU" BorderPane.alignment="CENTER" />
+            <Label fx:id="message" text="BIENVENU" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
          </center>
          <top>
             <HBox alignment="CENTER_RIGHT" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#changerAnnee" text="changer l'annee courrante" />
+                  <Button mnemonicParsing="false" onAction="#changerAnnee" text="changer l'annee courrante">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
                   <Button fx:id="helper" maxHeight="0.0" maxWidth="0.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" visible="false" BorderPane.alignment="CENTER_RIGHT" />
                   <ChoiceBox fx:id="annee_chb" prefWidth="150.0" />
                </children>

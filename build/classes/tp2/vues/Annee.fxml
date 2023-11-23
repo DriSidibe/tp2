@@ -10,10 +10,18 @@
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="695.0" minHeight="-Infinity" minWidth="600.0" prefHeight="398.0" prefWidth="663.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp2.controlleurs.AnneeController">
    <children>
+      <Label style="-fx-font-weight: bold; -fx-underline: true;" text="Enregistrer nouvelle annee" textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
       <TextField fx:id="annee" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
       <HBox alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#enregistrer" text="Enregistrer" />
+            <Button mnemonicParsing="false" onAction="#enregistrer" text="Enregistrer">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
          </children>
       </HBox>
    </children>

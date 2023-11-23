@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp2.controlleurs.ChangerAnneeCourranteController">
    <children>
+      <Label style="-fx-font-weight: bold; -fx-underline: true;" text="Changer l'annee courante">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
       <ListView fx:id="listview" maxWidth="100.0" minWidth="100.0" prefHeight="200.0" prefWidth="100.0" />
-      <Button mnemonicParsing="false" onAction="#choisir" text="choisir" />
+      <Button mnemonicParsing="false" onAction="#choisir" text="choisir">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
    </children>
 </VBox>

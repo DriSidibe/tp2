@@ -12,7 +12,7 @@
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
          <children>
-            <VBox alignment="TOP_CENTER" maxWidth="400.0" minWidth="400.0" prefHeight="200.0" prefWidth="400.0" spacing="20.0" HBox.hgrow="ALWAYS">
+            <VBox alignment="TOP_CENTER" maxWidth="450.0" minWidth="450.0" prefHeight="200.0" prefWidth="450.0" spacing="20.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" minHeight="100.0" prefHeight="100.0" prefWidth="300.0" style="-fx-underline: true; -fx-font-weight: bold; -fx-wrap-text: true; -fx-alignment: center;" text="Enrégistrement enseignant">
                      <font>
@@ -28,7 +28,10 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Nom" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Nom">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></Text>
                                     <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                                        <children>
                                           <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
@@ -43,7 +46,10 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Prenom" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Prenom">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></Text>
                                     <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                                        <children>
                                           <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
@@ -58,7 +64,10 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Téléphone" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Téléphone">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></Text>
                                     <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                                        <children>
                                           <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
@@ -73,7 +82,10 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Email" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Email">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></Text>
                                     <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                                        <children>
                                           <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
@@ -88,7 +100,10 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Grade" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Grade">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></Text>
                                     <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                                        <children>
                                           <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
@@ -101,9 +116,18 @@
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="480.0" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                            <children>
-                              <Button fx:id="enregistrer_enseignant_enregistrer_btn" layoutX="216.0" layoutY="29.0" mnemonicParsing="false" onAction="#enregistrer" text="Enregistrer" />
-                              <Button fx:id="enregistrer_enseignant_modifier_btn" layoutX="253.0" layoutY="29.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
-                              <Button fx:id="enregistrer_enseignant_supprimer_btn" layoutX="291.0" layoutY="29.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+                              <Button fx:id="enregistrer_enseignant_enregistrer_btn" layoutX="216.0" layoutY="29.0" mnemonicParsing="false" onAction="#enregistrer" text="Enregistrer">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Button>
+                              <Button fx:id="enregistrer_enseignant_modifier_btn" layoutX="253.0" layoutY="29.0" mnemonicParsing="false" onAction="#modifier" text="Modifier">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Button>
+                              <Button fx:id="enregistrer_enseignant_supprimer_btn" layoutX="291.0" layoutY="29.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Button>
                               <Button fx:id="annuler_mod" layoutX="212.0" layoutY="10.0" mnemonicParsing="false" onAction="#annuler_modification" style="-fx-background-color: red; -fx-text-fill: white;" text="Annuler" visible="false" />
                            </children>
                         </HBox>
@@ -123,8 +147,14 @@
                <children>
                   <HBox>
                      <children>
-                        <Label text="Nombre Total d'enseignant : " />
-                        <Label fx:id="enregistrerEnseignant_nbrEnseignant" layoutX="10.0" layoutY="10.0" text="0" />
+                        <Label text="Nombre Total d'enseignant : ">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="enregistrerEnseignant_nbrEnseignant" layoutX="10.0" layoutY="10.0" text="0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
                      </children>
                      <padding>
                         <Insets bottom="10.0" />
@@ -142,6 +172,7 @@
                               <TableColumn fx:id="enregistrer_enseignant_table_telephone" prefWidth="75.0" text="Téléphone" />
                               <TableColumn fx:id="enregistrer_enseignant_table_email" prefWidth="75.0" text="Email" />
                               <TableColumn fx:id="enregistrer_enseignant_table_grade" prefWidth="75.0" text="Grade" />
+                              <TableColumn fx:id="enregistrer_enseignant_table_nombreHeure" prefWidth="75.0" text="Nombre heure" />
                            </columns>
                         </TableView>
                      </children>
@@ -150,6 +181,9 @@
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                   </Button>
                </children>
                <padding>

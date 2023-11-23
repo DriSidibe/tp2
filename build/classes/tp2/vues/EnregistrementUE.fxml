@@ -12,9 +12,9 @@
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
          <children>
-            <VBox alignment="TOP_CENTER" maxWidth="400.0" minWidth="400.0" prefHeight="659.0" prefWidth="300.0" spacing="20.0">
+            <VBox alignment="TOP_CENTER" maxWidth="450.0" minWidth="450.0" prefHeight="659.0" prefWidth="300.0" spacing="20.0">
                <children>
-                  <Label style="-fx-underline: true; -fx-font-weight: bold;" text="ENREGISTREMENT D'UE">
+                  <Label style="-fx-underline: true; -fx-font-weight: bold; -fx-wrap-text: true; -fx-alignment: center;" text="ENREGISTREMENT D'UE">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -25,10 +25,18 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Libéllé UE" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Libéllé UE" >
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Text>
                                     <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
+                                          <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" >
+                                          <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Text>
                                        </children>
                                     </VBox>
                                  </children>
@@ -40,10 +48,18 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Nombre d'heure CM" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Nombre d'heure CM" >
+                                    <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Text>
                                     <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
+                                          <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" >
+                                          <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Text>
                                        </children>
                                     </VBox>
                                  </children>
@@ -58,7 +74,11 @@
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Nombre d'heure TD" />
                                     <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
+                                          <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" >
+                                          <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Text>
                                        </children>
                                     </VBox>
                                  </children>
@@ -70,10 +90,18 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Nombre d'heure TP" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Nombre d'heure TP" >
+                                    <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Text>
                                     <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
+                                          <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" >
+                                          <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Text>
                                        </children>
                                     </VBox>
                                  </children>
@@ -85,10 +113,18 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Nombre de groupe CM" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Nombre de groupe CM" >
+                                    <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Text>
                                     <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
+                                          <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" >
+                                          <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Text>
                                        </children>
                                     </VBox>
                                  </children>
@@ -100,10 +136,18 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Nombre de groupe TD" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Nombre de groupe TD" >
+                                    <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Text>
                                     <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
+                                          <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" >
+                                          <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Text>
                                        </children>
                                     </VBox>
                                  </children>
@@ -115,10 +159,18 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Nombre de groupe TP" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Nombre de groupe TP" >
+                                    <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Text>
                                     <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
+                                          <Text layoutX="10.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" >
+                                          <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Text>
                                        </children>
                                     </VBox>
                                  </children>
@@ -128,10 +180,22 @@
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="480.0" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                            <children>
-                              <Button fx:id="enregistrerUE_enregistrer_btn" layoutX="216.0" layoutY="29.0" mnemonicParsing="false" onAction="#enregistrer" text="Enregistrer" />
-                              <Button fx:id="enregistrerUE_modifier_btn" layoutX="253.0" layoutY="29.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
-                              <Button fx:id="enregistrerUE_supprimer_btn" layoutX="291.0" layoutY="29.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
-                              <Button fx:id="annuler_mod" layoutX="262.0" layoutY="10.0" mnemonicParsing="false" onAction="#annuler_modification" style="-fx-background-color: red; -fx-text-fill: white;" text="annuler" visible="false" />
+                              <Button fx:id="enregistrerUE_enregistrer_btn" layoutX="216.0" layoutY="29.0" mnemonicParsing="false" onAction="#enregistrer" text="Enregistrer" >
+                              <font>
+                                    <Font size="14.0" />
+                                 </font></Button>
+                              <Button fx:id="enregistrerUE_modifier_btn" layoutX="253.0" layoutY="29.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" >
+                              <font>
+                                    <Font size="14.0" />
+                                 </font></Button>
+                              <Button fx:id="enregistrerUE_supprimer_btn" layoutX="291.0" layoutY="29.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" >
+                              <font>
+                                    <Font size="14.0" />
+                                 </font></Button>
+                              <Button fx:id="annuler_mod" layoutX="262.0" layoutY="10.0" mnemonicParsing="false" onAction="#annuler_modification" style="-fx-background-color: red; -fx-text-fill: white;" text="annuler" visible="false" >
+                              <font>
+                                    <Font size="14.0" />
+                                 </font></Button>
                            </children>
                         </HBox>
                      </children>
@@ -150,8 +214,14 @@
                <children>
                   <HBox>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre d'UE :   " />
-                        <Text fx:id="enregistrerUE_nbrUe" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre d'UE :   " >
+                        <font>
+                                    <Font size="14.0" />
+                                 </font></Text>
+                        <Text fx:id="enregistrerUE_nbrUe" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" >
+                        <font>
+                                    <Font size="14.0" />
+                                 </font></Text>
                      </children>
                      <padding>
                         <Insets bottom="20.0" />
@@ -172,6 +242,9 @@
                      </columnResizePolicy>
                   </TableView>
                   <Button fx:id="enregistrerUE_vider_btn" mnemonicParsing="false" onAction="#vider" text="Vider">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>

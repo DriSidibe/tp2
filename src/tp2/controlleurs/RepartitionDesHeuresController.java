@@ -201,6 +201,15 @@ public class RepartitionDesHeuresController implements Initializable {
                             isOkForRegistretion = false;
                             break;
                         }
+                        Enseignant ens = a.getIdEnseignant();
+                        if (Objects.equals(a.getIdUe().getId(), selectedUe_chb.getId()) && Objects.equals(a.getIdEnseignant().getId(), selectedEnseigant.getId()) && (("PT".equals(ens.getGrade()) || "MC".equals(ens.getGrade())) && Integer.parseInt(repartition_seance_cm.getText()) != 0)) {
+                            if (("MC".equals(selectedEnseigant.getGrade()) || "PT".equals(selectedEnseigant.getGrade())) && Integer.parseInt(repartition_seance_cm.getText()) != 0) {
+                                Alert error_box = dialogs.error("Erreur", "Ue deja attribue", "Le cm de cette ue a deja ete attribué a un enseignant.");
+                                error_box.showAndWait();
+                                isOkForRegistretion = false;
+                                break;
+                            }
+                        }
                     }
                     if (isOkForRegistretion) {
                         int ancienQuota = 0;
